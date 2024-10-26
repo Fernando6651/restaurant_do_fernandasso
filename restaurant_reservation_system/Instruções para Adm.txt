@@ -1,0 +1,44 @@
+
+Instruções para Criar um Usuário Administrador
+
+    Acesse o ambiente virtual do projeto (se ainda não estiver ativado):
+
+    source venv/bin/activate
+
+Execute o comando para criar o superusuário:
+
+Dentro do diretório raiz do projeto, execute:
+
+    python manage.py createsuperuser
+
+    Preencha os detalhes do usuário administrador:
+
+        Username: Escolha um nome de usuário para o administrador.
+
+        Email address: Insira um endereço de e-mail válido.
+
+        Password: Escolha uma senha segura e confirme.
+
+        Nota: Certifique-se de lembrar essas credenciais, pois elas serão usadas para acessar o painel administrativo.
+
+Instruções para Administrador - Sistema de Reservas do Restaurante do Fernandasso
+
+    Login no Painel Administrativo
+        Acesse o painel administrativo em /admin/.
+        Entre com suas credenciais de administrador (nome de usuário e senha).
+
+    Gerenciar Reservas
+        No painel administrativo, vá até a seção "Reservas" para visualizar, editar ou deletar reservas feitas por clientes.
+        Você pode atualizar o status das reservas (confirmado, cancelado, pendente) conforme necessário.
+
+    Gerenciar Disponibilidade de Mesas
+        Na seção "Disponibilidade de Mesas", configure a quantidade de mesas disponíveis para datas específicas.
+        Esse controle é essencial para garantir que os clientes só possam reservar mesas dentro das limitações do restaurante.
+
+    Visualizar Relatórios e Estatísticas (Futuro)
+        No futuro, o sistema incluirá relatórios para visualizar o uso das mesas e as reservas ao longo do tempo.
+        Você poderá acompanhar o número de reservas e o uso do restaurante.
+
+    Logout
+        Ao terminar suas atividades, faça logout no painel administrativo para garantir a segurança.
+

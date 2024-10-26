@@ -1,0 +1,119 @@
+{% extends 'restaurant/base.html' %}
+
+{% block title %}Criar Nova Reserva{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <!-- Exibir mensagens de sucesso ou erro -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <!-- Card para o formulário de reserva -->
+            <div class="card-custom">
+                <div class="card-body">
+                    <h1 class="text-center"><i class="fas fa-calendar-plus"></i> Criar Nova Reserva</h1>
+                    <div class="form-container mt-4">
+                        <form method="POST">
+                            {% csrf_token %}
+                            
+                            <!-- Nome -->
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Nome</label>
+                                <input type="text" class="form-control {% if form.customer_name.errors %}is-invalid{% endif %}" id="name" name="customer_name" placeholder="Seu nome" value="{{ form.customer_name.value|default_if_none:'' }}">
+                                {% if form.customer_name.errors %}
+                                    <div class="invalid-feedback">
+                                        {{ form.customer_name.errors }}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Email -->
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control {% if form.email.errors %}is-invalid{% endif %}" id="email" name="email" placeholder="Seu email" value="{{ form.email.value|default_if_none:'' }}">
+                                {% if form.email.errors %}
+                                    <div class="invalid-feedback">
+                                        {{ form.email.errors }}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Data da Reserva com Disponibilidade -->
+                            <div class="mb-3">
+                                <label for="date" class="form-label">Data da Reserva</label>
+                                <input type="date" class="form-control {% if form.date.errors %}is-invalid{% endif %}" id="date" name="date" 
+                                        value="{{ form.date.value|default_if_none:'' }}"
+                                        min="{{ today }}" 
+                                        max="{{ today_plus_30_days }}">
+                                {% if form.date.errors %}
+                                    <div class="invalid-feedback">
+                                        {{ form.date.errors }}
+                                    </div>
+                                {% endif %}
+                                <small id="availability-info" class="form-text text-muted">
+                                    Selecione uma data dentro dos próximos 30 dias.
+                                </small>
+                            </div>
+
+                            <!-- Número de Pessoas -->
+                            <div class="mb-3">
+                                <label for="number_of_people" class="form-label">Número de Pessoas</label>
+                                <input type="number" class="form-control {% if form.number_of_people.errors %}is-invalid{% endif %}" id="number_of_people" name="number_of_people" placeholder="Número de pessoas" value="{{ form.number_of_people.value|default_if_none:'' }}">
+                                {% if form.number_of_people.errors %}
+                                    <div class="invalid-feedback">
+                                        {{ form.number_of_people.errors }}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Botão de Envio -->
+                            <button type="submit" class="btn btn-primary btn-block">
+                                Criar Reserva
+                            </button>
+                        </form>
+                    </div>                  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript para verificar disponibilidade de mesas -->
+<script>
+document.getElementById('date').addEventListener('change', function() {
+    const date = this.value;
+    const availabilityInfo = document.getElementById('availability-info');
+
+    if (date) {
+        fetch(`/check-availability/?date=${date}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.available_tables > 0) {
+                    availabilityInfo.textContent = `${data.available_tables} mesas disponíveis para a data selecionada.`;
+                    availabilityInfo.classList.remove('text-danger');
+                    availabilityInfo.classList.add('text-success');
+                } else {
+                    availabilityInfo.textContent = "Nenhuma mesa disponível para esta data.";
+                    availabilityInfo.classList.remove('text-success');
+                    availabilityInfo.classList.add('text-danger');
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao verificar disponibilidade:', error);
+                availabilityInfo.textContent = "Erro ao verificar disponibilidade.";
+                availabilityInfo.classList.add('text-danger');
+            });
+    } else {
+        availabilityInfo.textContent = "Selecione uma data para verificar a disponibilidade de mesas.";
+        availabilityInfo.classList.remove('text-danger', 'text-success');
+    }
+});
+</script>
+{% endblock %}

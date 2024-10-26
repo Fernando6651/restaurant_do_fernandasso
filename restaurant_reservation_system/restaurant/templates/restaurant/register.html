@@ -1,0 +1,71 @@
+{% extends 'restaurant/base.html' %}
+
+{% block title %}Registrar{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card-custom">
+                <div class="card-body">
+                    <h1 class="text-center"><i class="fas fa-user-plus"></i> Registrar</h1>
+                    <form method="POST" novalidate>
+                        {% csrf_token %}
+                        
+                        <!-- Campo Username -->
+                        <div class="form-group mb-3">
+                            <label for="id_username">Nome de Usuário:</label>
+                            <input type="text" class="form-control {% if form.username.errors %}is-invalid{% endif %}" id="id_username" name="username" placeholder="Digite seu nome de usuário">
+                            {% if form.username.errors %}
+                                <div class="invalid-feedback">
+                                    {{ form.username.errors.0 }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Campo Email -->
+                        <div class="form-group mb-3">
+                            <label for="id_email">Email:</label>
+                            <input type="email" class="form-control {% if form.email.errors %}is-invalid{% endif %}" id="id_email" name="email" placeholder="Digite seu email">
+                            {% if form.email.errors %}
+                                <div class="invalid-feedback">
+                                    {{ form.email.errors.0 }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Campo Password -->
+                        <div class="form-group mb-3">
+                            <label for="id_password1">Senha:</label>
+                            <input type="password" class="form-control {% if form.password1.errors %}is-invalid{% endif %}" id="id_password1" name="password1" placeholder="Digite sua senha">
+                            {% if form.password1.errors %}
+                                <ul class="invalid-feedback list-unstyled">
+                                    {% for error in form.password1.errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+
+                        <!-- Campo Confirm Password -->
+                        <div class="form-group mb-3">
+                            <label for="id_password2">Confirme a Senha:</label>
+                            <input type="password" class="form-control {% if form.password2.errors %}is-invalid{% endif %}" id="id_password2" name="password2" placeholder="Confirme sua senha">
+                            {% if form.password2.errors %}
+                                <div class="invalid-feedback">
+                                    {{ form.password2.errors.0 }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Botão Criar Conta -->
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-user-plus"></i> Criar Conta
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

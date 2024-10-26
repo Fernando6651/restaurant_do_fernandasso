@@ -1,0 +1,94 @@
+Documentação do Sistema de Reservas - Restaurante do Fernandasso
+1. Introdução
+
+O sistema de reservas foi desenvolvido para o Restaurante do Fernandasso, visando simplificar o processo de gerenciamento de reservas, disponibilizar a verificação de mesas disponíveis e fornecer uma interface amigável para os clientes realizarem suas reservas e conhecerem mais sobre o restaurante e sua história.
+2. Funcionalidades Implementadas
+2.1 Autenticação e Cadastro de Usuários
+
+    Cadastro de Usuário: Tela de registro que permite a criação de novas contas de usuário com campos de nome de usuário, e-mail e senha. Inclui validação de dados para garantir segurança.
+    Login: Tela de login customizada com autenticação baseada em JWT (JSON Web Tokens).
+    Logout: Opção de logout disponível na barra de navegação (navbar) para usuários autenticados. Ao sair, o usuário é redirecionado para a página inicial.
+    Autenticação com JWT: Implementada para garantir que somente usuários autenticados possam acessar determinadas áreas do sistema, como criação e visualização de reservas.
+
+2.2 Reservas
+
+    Criação de Reserva:
+        Formulário que permite ao cliente criar uma nova reserva, incluindo campos como nome, e-mail, data da reserva e número de pessoas.
+        Verificação de disponibilidade de mesas antes da confirmação da reserva.
+        Exibição de mensagens de sucesso ou erro após a criação da reserva.
+
+    Verificação de Disponibilidade de Mesas:
+        Endpoint /check-availability/ que permite verificar a quantidade de mesas disponíveis para uma data específica, retornando a resposta em JSON. Este endpoint ajuda os clientes a saberem se há vagas antes de tentarem reservar.
+
+    Visualização de Reservas: Usuários autenticados podem visualizar suas próprias reservas em uma lista que exibe as informações da reserva, como data, status e número de pessoas.
+
+2.3 Páginas Informativas
+
+    Página Inicial: Contém uma apresentação do restaurante e links de navegação para as principais seções do site.
+    Página "Sobre": Informações sobre a história do restaurante e o chef, acompanhadas de imagens ilustrativas.
+    Depoimentos de Clientes: Seção estilizada que exibe comentários de clientes, organizada de forma alinhada e visualmente agradável.
+
+2.4 Interface e Estilos
+
+    Navbar Responsiva: Barra de navegação que inclui links para as seções do site e exibe a opção de logout quando o usuário está autenticado.
+    Frameworks e Bibliotecas:
+        Bootstrap: Utilizado para a responsividade e organização do layout.
+        Font Awesome: Ícones utilizados em botões e seções, proporcionando uma experiência visual moderna.
+        CSS Customizado: Definições de estilo, cores e alinhamento para manter a identidade visual do restaurante.
+
+3. Testes
+3.1 Testes de Unidade e Integração
+
+    Autenticação:
+        Verifica se usuários não autenticados não conseguem criar reservas.
+        Confirma que usuários autenticados conseguem visualizar suas próprias reservas.
+
+    Reserva:
+        Teste de criação de reserva, verificando se o número de mesas disponíveis é atualizado corretamente e se a resposta contém o status esperado.
+
+    Disponibilidade:
+        Testa o endpoint /check-availability/ para confirmar que o sistema retorna a quantidade correta de mesas disponíveis para datas válidas, inexistentes e formatos de data inválidos.
+
+4. Próximas Atualizações
+4.1 Gerenciamento Avançado de Reservas
+
+    Edição e Cancelamento de Reservas: Implementar a capacidade de editar ou cancelar reservas existentes, permitindo ao usuário gerenciar suas reservas de forma autônoma.
+    Histórico de Reservas: Adicionar uma página para visualização de histórico completo de reservas passadas do usuário.
+
+4.2 Funcionalidades de Administração
+
+    Painel Administrativo: Desenvolver uma interface administrativa para que os gerentes possam visualizar e gerenciar todas as reservas, bem como configurar a disponibilidade de mesas para datas futuras.
+    Relatórios e Estatísticas: Implementar relatórios detalhados, incluindo o número de reservas diárias e semanais, ocupação média das mesas, entre outros.
+
+4.3 Melhorias na Interface
+
+    Design Responsivo para Dispositivos Móveis: Otimizar a experiência de navegação e reservas em dispositivos móveis.
+    Confirmação de Reserva por E-mail: Implementar o envio automático de e-mails de confirmação de reserva com os detalhes completos para o cliente.
+
+4.4 Otimização do Sistema de Reservas
+
+    Algoritmo Inteligente de Alocação de Mesas: Introduzir um sistema avançado de alocação que considere o número de pessoas por reserva para otimizar o uso do espaço.
+    Configurações de Antecedência: Estabelecer limites de tempo para criação de reservas, como mínimo de 1 dia de antecedência e máximo de 1 mês.
+
+5. Estrutura do Projeto
+5.1 Organização das Rotas
+
+    / - Página inicial
+    /reservations/ - Listagem e criação de reservas
+    /reservations/new/ - Formulário para nova reserva
+    /login/ - Login de usuário
+    /logout/ - Logout de usuário
+    /register/ - Página de cadastro de novos usuários
+    /menu/ - Página com o menu do restaurante
+    /sobre/ - Página sobre o restaurante e sua história
+    /check-availability/ - Endpoint para verificar disponibilidade de mesas
+
+5.2 API de Autenticação e Endpoints
+
+    Autenticação com JWT:
+        /api/token/: Geração de token JWT para autenticação do usuário.
+        /api/token/refresh/: Atualização do token JWT.
+
+    Reserva de Mesas:
+        /check-availability/: Verifica a disponibilidade de mesas para uma data específica.
+        /reservations/: Criação e listagem de reservas (acessível apenas para usuários autenticados).

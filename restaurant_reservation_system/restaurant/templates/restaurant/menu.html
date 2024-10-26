@@ -1,0 +1,34 @@
+{% extends 'restaurant/base.html' %}
+
+{% block title %}Nosso Menu - Restaurante do Fernandasso{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Nosso Menu</h1>
+    
+    <!-- Filtro de Categorias -->
+    <nav class="menu-categories">
+        <a href="{% url 'menu' %}" class="{% if not selected_category %}active{% endif %}">Todos</a>
+        {% for code, name in categories %}
+            <a href="{% url 'menu' %}?category={{ code }}" class="{% if selected_category == code %}active{% endif %}">
+                {{ name }}
+            </a>
+        {% endfor %}
+    </nav>
+
+    <!-- Listagem de Pratos -->
+    <div class="menu-container">
+        {% for dish in dishes %}
+        <div class="menu-item">
+            {% if dish.image %}
+            <img src="{{ dish.image.url }}" alt="{{ dish.name }}">
+            {% endif %}
+            <h2>{{ dish.name }}</h2>
+            <p>{{ dish.description }}</p>
+            <p class="price">R$ {{ dish.price }}</p>
+            <p class="category">Categoria: {{ dish.get_category_display }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

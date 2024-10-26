@@ -1,0 +1,54 @@
+{% extends 'restaurant/base.html' %}
+
+{% block title %}Minhas Reservas - Restaurante do Fernandasso{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4"><i class="fas fa-calendar-alt"></i> Minhas Reservas</h1>
+    
+    <!-- Botão para criar nova reserva -->
+    <div class="mb-4">
+        <a href="{% url 'create_reservation' %}" class="btn btn-primary btn-lg">
+            <i class="fas fa-plus-circle"></i> Criar Nova Reserva
+        </a>
+    </div>
+
+    <div class="table-container">
+        <table class="table table-bordered table-hover">
+            <thead class="bg-danger text-white">
+                <tr>
+                    <th>Nome</th>
+                    <th>Data</th>
+                    <th>Número de Pessoas</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if reservations %}
+                    {% for reservation in reservations %}
+                    <tr>
+                        <td>{{ reservation.customer_name }}</td>
+                        <td>{{ reservation.date|date:"d/m/Y H:i" }}</td>
+                        <td>{{ reservation.number_of_people }}</td>
+                        <td>
+                            {% if reservation.status == 'pending' %}
+                                <span class="badge badge-warning">Pendente</span>
+                            {% elif reservation.status == 'confirmed' %}
+                                <span class="badge badge-success">Confirmado</span>
+                            {% elif reservation.status == 'canceled' %}
+                                <span class="badge badge-danger">Cancelado</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center">Nenhuma reserva encontrada.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+        
+    </div>
+</div>
+{% endblock %}

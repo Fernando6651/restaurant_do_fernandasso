@@ -1,0 +1,106 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<!-- Banner com botões de ação rápida -->
+<div class="banner" style="background-image: url('{% static 'img/banner.png' %}');">
+    <h1 class="display-4">Bem-vindo ao Restaurante do Fernandasso</h1>
+    <p class="lead">Onde o sabor e a tradição se encontram!</p>
+    <div class="banner-buttons mt-5">
+        <a href="{% url 'menu' %}" class="btn btn-danger btn-lg mr-2">Explorar Menu</a>
+        <a href="{% url 'reservations' %}" class="btn btn-outline-light btn-lg">Reservar Mesa</a>
+    </div>
+</div>
+
+<!-- Seção "Sobre Nós" resumida -->
+<div class="container mt-5">
+    <h2 class="text-center">Sobre Nós</h2>
+    <p class="text-center">
+        O Restaurante do Fernandasso é conhecido por sua autêntica culinária italiana, oferecendo pratos tradicionais preparados com ingredientes frescos e selecionados...
+    </p>
+    <div class="text-center">
+        <a href="{% url 'sobre' %}" class="btn btn-danger">Saiba Mais</a>
+    </div>
+</div>
+
+<!-- Seção de Destaques do Menu -->
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Destaques do Menu</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <img src="{% static 'img/carbonara.jpg' %}" class="card-img-top" alt="Spaghetti Carbonara">
+                <div class="card-body">
+                    <h5 class="card-title">Spaghetti Carbonara</h5>
+                    <p class="card-text">Massa italiana com molho cremoso e bacon.</p>
+                    <a href="{% url 'menu' %}" class="btn btn-danger">Ver Menu</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <img src="{% static 'img/tiramisu.jpg' %}" class="card-img-top" alt="Tiramisu">
+                <div class="card-body">
+                    <h5 class="card-title">Tiramisu</h5>
+                    <p class="card-text">Deliciosa sobremesa italiana feita com café e cacau.</p>
+                    <a href="{% url 'menu' %}" class="btn btn-danger">Ver Menu</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <img src="{% static 'img/bruschetta.jpg' %}" class="card-img-top" alt="Bruschetta">
+                <div class="card-body">
+                    <h5 class="card-title">Bruschetta</h5>
+                    <p class="card-text">Torradas com tomate, alho e azeite de oliva.</p>
+                    <a href="{% url 'menu' %}" class="btn btn-danger">Ver Menu</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Seção de Avaliações de Clientes -->
+<div class="container mt-5">
+    <h2 class="text-center mb-4">O que nossos clientes dizem</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="p-4 mb-4 text-center border rounded shadow-sm">
+                <p class="mb-0">Melhor restaurante da cidade! A comida é incrível e o serviço é impecável.</p>
+                <footer class="blockquote-footer text-white mt-2">João Silva</footer>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 mb-4 text-center border rounded shadow-sm">
+                <p class="mb-0">Tiramisu maravilhoso! Um verdadeiro sabor da Itália.</p>
+                <footer class="blockquote-footer text-white mt-2">Maria Souza</footer>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 mb-4 text-center border rounded shadow-sm">
+                <p class="mb-0">Ambiente acolhedor e pratos muito bem preparados. Recomendo muito!</p>
+                <footer class="blockquote-footer text-white mt-2">Carlos Santos</footer>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Galeria de Imagens do Restaurante -->
+<div class="container mt-5">
+    <h2 class="text-center">Nosso Ambiente</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{% static 'img/restaurante_interior_1.jpg' %}" class="img-fluid rounded mb-4" alt="Interior 1">
+        </div>
+        <div class="col-md-4">
+            <img src="{% static 'img/restaurante_interior_2.jpg' %}" class="img-fluid rounded mb-4" alt="Interior 2">
+        </div>
+        <div class="col-md-4">
+            <img src="{% static 'img/restaurante_interior_3.jpg' %}" class="img-fluid rounded mb-4" alt="Interior 3">
+        </div>
+    </div>
+</div>
+
+{% endblock %}

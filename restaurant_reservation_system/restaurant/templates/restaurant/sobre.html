@@ -1,0 +1,56 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Sobre Nós</h1>
+    <p class="lead text-center">Conheça a história do Restaurante do Fernandasso e nossa dedicação à culinária italiana autêntica.</p>
+
+    <!-- Seção História -->
+    <div class="row mt-5 align-items-center">
+        <div class="col-md-6">
+            <h2 class="mb-3">Nossa História</h2>
+            <p>O Restaurante do Fernandasso foi fundado em 2024 com o objetivo de trazer o melhor da culinária italiana para sua mesa. Com pratos autênticos e ingredientes frescos, nossa missão é proporcionar uma experiência gastronômica única, combinando tradição e inovação na cozinha.</p>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="{% static 'img/restaurante.webp' %}" class="img-fluid rounded shadow" alt="Restaurante" style="max-width: 100%; height: auto;">
+        </div>
+    </div>
+
+    <!-- Seção Chef -->
+    <div class="row mt-5 align-items-center">
+        <div class="col-md-6 text-center">
+            <img src="{% static 'img/cheff.png' %}" class="img-fluid rounded-circle shadow" alt="Chef Fernandasso" style="max-width: 80%; height: auto;">
+        </div>
+        <div class="col-md-6">
+            <h2 class="mb-3">Nosso Chef</h2>
+            <p>Chef Fernandasso é um mestre da culinária italiana, com mais de 20 anos de experiência na arte da gastronomia. Apaixonado por sabores autênticos e pela criatividade na cozinha, ele lidera nossa equipe com dedicação e amor pela arte de cozinhar.</p>
+        </div>
+    </div>
+
+    <!-- Seção Depoimentos -->
+    <div class="mt-5">
+        <h2 class="text-center mb-4">O que nossos clientes dizem</h2>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <blockquote class="blockquote p-3 h-100 d-flex flex-column justify-content-between">
+                    <p class="mb-4">"Melhor restaurante da cidade! A comida é incrível e o serviço é impecável."</p>
+                    <footer class="blockquote-footer text-white p-2" style="background-color: #b71c1c;">João Silva</footer>
+                </blockquote>
+            </div>
+            <div class="col-md-4">
+                <blockquote class="blockquote p-3 h-100 d-flex flex-column justify-content-between">
+                    <p class="mb-4">"Ambiente acolhedor e pratos muito bem preparados. Recomendo muito!"</p>
+                    <footer class="blockquote-footer text-white p-2" style="background-color: #b71c1c;">Maria Souza</footer>
+                </blockquote>
+            </div>
+            <div class="col-md-4">
+                <blockquote class="blockquote p-3 h-100 d-flex flex-column justify-content-between">
+                    <p class="mb-4">"Tiramisu maravilhoso! Um verdadeiro sabor da Itália."</p>
+                    <footer class="blockquote-footer text-white p-2" style="background-color: #b71c1c;">Carlos Santos</footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

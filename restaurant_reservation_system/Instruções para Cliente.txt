@@ -1,0 +1,24 @@
+Instruções para Cliente - Sistema de Reservas do Restaurante do Fernandasso
+
+    Cadastro
+        Acesse a página de registro através do link "Registrar".
+        Preencha as informações de usuário, e-mail e senha e confirme sua senha.
+        Após o cadastro, você poderá fazer login e acessar suas reservas.
+
+    Login
+        Acesse a página de login através do link "Login" na barra de navegação.
+        Insira seu nome de usuário e senha.
+        Após o login, você terá acesso às funcionalidades de reserva.
+
+    Fazer uma Reserva
+        Navegue até a página de reservas.
+        Escolha uma data e informe o número de pessoas.
+        Verifique a disponibilidade e, se houver mesas disponíveis, confirme sua reserva.
+        Após realizar a reserva, ela aparecerá na seção "Minhas Reservas".
+
+    Visualizar Minhas Reservas
+        No menu, clique em "Minhas Reservas" para visualizar as reservas que você fez.
+        Essa seção exibe todas as reservas com detalhes como data, número de pessoas e status da reserva.
+
+    Logout
+        Para sair da sua conta, clique no botão de logout no canto superior direito.
